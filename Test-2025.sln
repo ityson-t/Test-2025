@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringUtils", "StringUtils\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankSystem", "BankSystem\BankSystem.csproj", "{CBCABFEE-E8E3-46AC-BABA-802BC925AD40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationSystemOop", "IntegrationSystemOop\IntegrationSystemOop.csproj", "{277FAA82-0D16-454F-B0CC-C1A84DD55FFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{CBCABFEE-E8E3-46AC-BABA-802BC925AD40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBCABFEE-E8E3-46AC-BABA-802BC925AD40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBCABFEE-E8E3-46AC-BABA-802BC925AD40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{277FAA82-0D16-454F-B0CC-C1A84DD55FFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{277FAA82-0D16-454F-B0CC-C1A84DD55FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{277FAA82-0D16-454F-B0CC-C1A84DD55FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{277FAA82-0D16-454F-B0CC-C1A84DD55FFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
