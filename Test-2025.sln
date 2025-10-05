@@ -43,6 +43,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankSystem", "BankSystem\Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationSystemOop", "IntegrationSystemOop\IntegrationSystemOop.csproj", "{277FAA82-0D16-454F-B0CC-C1A84DD55FFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankSystemOop", "BankSystemOop\BankSystemOop.csproj", "{DD179A13-5337-4335-9DA1-A4088153F4D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book", "Book\Book.csproj", "{B28175EE-7F9E-499D-9457-20FD8B23CB29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +133,14 @@ Global
 		{277FAA82-0D16-454F-B0CC-C1A84DD55FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{277FAA82-0D16-454F-B0CC-C1A84DD55FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{277FAA82-0D16-454F-B0CC-C1A84DD55FFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD179A13-5337-4335-9DA1-A4088153F4D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD179A13-5337-4335-9DA1-A4088153F4D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD179A13-5337-4335-9DA1-A4088153F4D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD179A13-5337-4335-9DA1-A4088153F4D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B28175EE-7F9E-499D-9457-20FD8B23CB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28175EE-7F9E-499D-9457-20FD8B23CB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28175EE-7F9E-499D-9457-20FD8B23CB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28175EE-7F9E-499D-9457-20FD8B23CB29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
