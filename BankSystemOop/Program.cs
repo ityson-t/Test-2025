@@ -76,7 +76,7 @@
     }
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             BankAccount account = new BankAccount("张三", 1000);
 
