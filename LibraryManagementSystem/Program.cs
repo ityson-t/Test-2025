@@ -102,37 +102,30 @@ namespace LibraryManagementSystem
         }
     }
     internal class Library
-    {        
-        public bool CheckInStock(List<Book> bookList, string isbn)
+    {
+        List<Book> _bookList = new List<Book>();
+        public bool HasCopyWithStatus(string isbn, bool isAvailable)
         {
-            foreach (var item in bookList)
+            foreach (var item in _bookList)
             {
-                if (item.ISBN == isbn)
+                if (item.ISBN == isbn && item.IsAvailable == isAvailable)
                 {
                     return true;
                 }
             }
-            return false;            
+            return false;
         }
-        public void Borrow(List<Book> bookList, string isbn)
+        public void Borrow(string isbn)
         {
-            if (this.CheckInStock(bookList, isbn))
+            if (this.HasCopyWithStatus(isbn, true))
             {
-                for (int i = 0; i < bookList.Count; i++)
+                foreach (var item in _bookList)
                 {
-                    if (bookList[i].ISBN != isbn)
+                    if (item.ISBN == isbn && item.IsAvailable == true)
                     {
-                        continue;
-                    }
-                    else if (bookList[i].IsAvailable == true)
-                    {
-                        bookList[i].IsAvailable = false;
+                        item.IsAvailable = false;
                         Console.WriteLine($"借阅成功！");
                         break;
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("该图书已被借出，无法借阅。");
                     }
                 }
             }
@@ -141,55 +134,47 @@ namespace LibraryManagementSystem
                 throw new InvalidOperationException("该图书无库存记录，无法借阅。");
             }
         }
-        public void Return(List<Book> bookList, string isbn)
+        public void Return(string isbn)
         {
-            if (this.CheckInStock(bookList, isbn))
+            if (this.HasCopyWithStatus(isbn, false))
             {
-                for (int i = 0; i < bookList.Count; i++)
+                foreach (var item in _bookList)
                 {
-                    if (bookList[i].ISBN != isbn)
+                    if (item.ISBN == isbn && item.IsAvailable == false)
                     {
-                        continue;
-                    }
-                    else if (bookList[i].IsAvailable == false)
-                    {
-                        bookList[i].IsAvailable = true;
+                        item.IsAvailable = true;
                         Console.WriteLine($"归还成功！");
                         break;
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("该图书未借出，无法归还。");
                     }
                 }
             }
             else
             {
-                throw new InvalidOperationException("该图书无库存记录，，无法归还。");
+                throw new InvalidOperationException("该图书未借出，无法归还。");
             }
         }
-        public void Displayinventory(List<Book> bookList)
+        public void Displayinventory()
         {
-            if (bookList.Count != 0)
+            if (_bookList.Count != 0)
             {
-                foreach (var item in bookList)
+                foreach (var item in _bookList)
                 {
                     Console.WriteLine($"{item.ToString()}");
-                }                
+                }
             }
             else
             {
                 Console.WriteLine("当前无库存图书。");
             }
         }
-        public Book AddBook()
+        public void AddBook()
         {
             string title = UserInputHelper.GetStringInput("请输入书名：");
             string isbn = UserInputHelper.GetStringInput("请输入ISBN：");
             string author = UserInputHelper.GetStringInput("请输入作者：");
             decimal price = UserInputHelper.GetDecimalInput("请输入价格：");
             Book newBook = new Book(title, isbn, author, price);
-            return newBook;
+            _bookList.Add(newBook);
         }
     }
     internal class Book
@@ -256,7 +241,7 @@ namespace LibraryManagementSystem
             _isbn = isbn;
             Author = author;
             Price = price;
-        }        
+        }
         public override string ToString()
         {
             return $"书名: {_title}, ISBN: {_isbn}, 作者: {_author},价格：￥{Price:f2} 是否可借: {(_isAvailable ? "是" : "否")}";
@@ -267,7 +252,6 @@ namespace LibraryManagementSystem
         static void Main(string[] args)
         {
             Library library = new Library();
-            List<Book> bookList= new List<Book>(); 
             while (true)
             {
                 Menu.Show();
@@ -281,7 +265,7 @@ namespace LibraryManagementSystem
                             int nextAction = UserInputHelper.GetIntInput("请选择操作（1-2）：", 1, 2);
                             if (nextAction == 1)
                             {
-                                bookList.Add(library.AddBook());
+                                library.AddBook();
                                 continue;
                             }
                             else
@@ -299,7 +283,7 @@ namespace LibraryManagementSystem
                             {
                                 try
                                 {
-                                    library.Borrow(bookList, UserInputHelper.GetStringInput("请输入ISBN："));
+                                    library.Borrow(UserInputHelper.GetStringInput("请输入ISBN："));
                                     continue;
                                 }
                                 catch (InvalidOperationException ex)
@@ -322,7 +306,7 @@ namespace LibraryManagementSystem
                             {
                                 try
                                 {
-                                    library.Return(bookList, UserInputHelper.GetStringInput("请输入ISBN："));
+                                    library.Return(UserInputHelper.GetStringInput("请输入ISBN："));
                                     continue;
                                 }
                                 catch (InvalidOperationException ex)
@@ -337,7 +321,7 @@ namespace LibraryManagementSystem
                         }
                         break;
                     case 4:
-                        library.Displayinventory(bookList);
+                        library.Displayinventory();
                         break;
                     case 5:
                         Menu.Exit();
