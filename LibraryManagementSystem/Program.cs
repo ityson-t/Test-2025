@@ -159,7 +159,7 @@ namespace LibraryManagementSystem
             {
                 foreach (var item in _bookList)
                 {
-                    Console.WriteLine($"{item.ToString()}");
+                    Console.WriteLine("{item.ToString()}");
                 }
             }
             else
@@ -173,14 +173,14 @@ namespace LibraryManagementSystem
             string isbn = UserInputHelper.GetStringInput("请输入ISBN：");
             string author = UserInputHelper.GetStringInput("请输入作者：");
             decimal price = UserInputHelper.GetDecimalInput("请输入价格：");
-            Book newBook = new Book(title, isbn, author, price);
+            Book newBook = new (title, isbn, author, price);
             _bookList.Add(newBook);
         }
     }
     internal class Book
     {
         string _title;
-        string _isbn;
+        readonly string _isbn;
         string _author;
         decimal _price;
         bool _isAvailable = true;
@@ -249,9 +249,9 @@ namespace LibraryManagementSystem
     }
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Library library = new Library();
+            Library library = new ();
             while (true)
             {
                 Menu.Show();
