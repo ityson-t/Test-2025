@@ -110,17 +110,6 @@ namespace LibrarySystem
     }
     internal class Library
     {
-        public bool HasCopyWithStatus(List<Book> books, string isbn, bool status)
-        {
-            foreach (var item in books)
-            {
-                if (item.ISBN == isbn && item.IsAvailable == status)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
         public void Borrow(List<Book> books, string isbn, bool status)
         {
             bool isFound = false;
@@ -128,7 +117,7 @@ namespace LibrarySystem
             {
                 if (item.ISBN == isbn && item.IsAvailable == status)
                 {
-                    item.Borrow(item);
+                    item.Borrow();
                     isFound = true;
                     break;
                 }
@@ -139,14 +128,14 @@ namespace LibrarySystem
 
             }
         }
-        public void Return(List<Book> books, string isbn,bool status)
+        public void Return(List<Book> books, string isbn, bool status)
         {
             bool isFound = false;
             foreach (var item in books)
             {
-                if (item.ISBN == isbn&&item.IsReturnable==status)
+                if (item.ISBN == isbn && item.IsReturnable == status)
                 {
-                    item.Return(item);
+                    item.Return();
                     isFound = true;
                     break;
                 }
@@ -197,7 +186,7 @@ namespace LibrarySystem
     {
         abstract public string Title { get; set; }
         abstract public string Author { get; set; }
-        abstract public string ISBN { get; set; }
+        public string ISBN { get; }
         abstract public decimal Price { get; set; }
         virtual public bool IsAvailable { get; set; } = true;
         virtual public bool IsReturnable { get; set; } = false;
@@ -213,8 +202,8 @@ namespace LibrarySystem
         {
             return $"书名: {Title}, 作者: {Author}, ISBN: {ISBN}, 价格: {Price}, 是否可借: {IsAvailable}";
         }
-        abstract public void Borrow(Book book);
-        abstract public void Return(Book book);
+        abstract public void Borrow();
+        abstract public void Return();
     }
     internal class PhysicalBook : Book
     {
@@ -226,7 +215,6 @@ namespace LibrarySystem
         {
             get; set;
         }
-        public override string ISBN { get; set; }
         public override decimal Price
         {
             get; set;
@@ -244,20 +232,11 @@ namespace LibrarySystem
             CopiesAvailable = UserInputHelper.GetIntInput("请输入入库数量：");
             TotalCopies = CopiesAvailable;
         }
-        //public override Book AddBook()
-        //{
-        //    string title = UserInputHelper.GetStringInput("请输入书名: ");
-        //    string author = UserInputHelper.GetStringInput("请输入作者: ");
-        //    string isbn = UserInputHelper.GetStringInput("请输入ISBN: ");
-        //    decimal price = UserInputHelper.GetDecimalInput("请输入价格: ");
-        //    int copiesAvailable = UserInputHelper.GetIntInput("请输入副本数: ");
-        //    return new PhysicalBook(title, author, isbn, price);
-        //}
         public override string ToString()
         {
             return $"书名: {Title}, 作者: {Author}, ISBN: {ISBN}, 价格: {Price}, 是否可借: {IsAvailable},是否可还：{IsReturnable} 剩余副本数: {CopiesAvailable}";
         }
-        public override void Borrow(Book book)
+        public override void Borrow()
         {
             if (CopiesAvailable > 0)
             {
@@ -274,7 +253,7 @@ namespace LibrarySystem
                 throw new InvalidOperationException("该图书无可借副本，无法借阅。");
             }
         }
-        public override void Return(Book book)
+        public override void Return()
         {
             if (TotalCopies > CopiesAvailable)
             {
@@ -282,7 +261,7 @@ namespace LibrarySystem
                 IsAvailable = true;
                 if (CopiesAvailable == TotalCopies)
                 {
-                    IsReturnable=false;
+                    IsReturnable = false;
                 }
                 Console.WriteLine("归还成功！");
             }
@@ -304,7 +283,6 @@ namespace LibrarySystem
         {
             get; set;
         }
-        public override string ISBN { get; set; }
         public override decimal Price
         {
             get; set;
@@ -313,6 +291,7 @@ namespace LibrarySystem
         {
             get; set;
         }
+        public override bool IsReturnable { get; set; } = true;
         public EBook(string title, string author, string isbn, decimal price) : base(title, author, isbn, price)
         {
             DownloadLink = UserInputHelper.GetStringInput("请输入下载链接：");
@@ -321,16 +300,15 @@ namespace LibrarySystem
         {
             return $"书名: {Title}, 作者: {Author}, ISBN: {ISBN}, 价格: {Price}, 是否可借: {IsAvailable}";
         }
-        public override void Borrow(Book book)
+        public override void Borrow()
         {
             Console.WriteLine($"电子书下载链接：{this.DownloadLink}");
         }
-        public override void Return(Book book)
+        public override void Return()
         {
             Console.WriteLine("电子书无需归还。");
         }
     }
-
     internal class Program
     {
         static void Main()
