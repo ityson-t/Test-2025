@@ -103,7 +103,7 @@ namespace LibraryManagementSystem
     }
     internal class Library
     {
-        List<Book> _bookList = new List<Book>();
+        List<Book> _bookList = new ();
         public bool HasCopyWithStatus(string isbn, bool isAvailable)
         {
             foreach (var item in _bookList)
