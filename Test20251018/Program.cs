@@ -5,32 +5,26 @@ namespace Test20251018
 {
     internal static class UserInputHelper
     {
-        public static bool CheckDoubleInput(string input, out double doubleResult)
+        public static T InputHelper<T>(string prompt, Func<string, (bool success, T value)> parseFunc, Predicate<T> condtion)
         {
-            if (double.TryParse(input, out double result))
+            while (true)
             {
-                doubleResult = result;
-                return true;
+                Console.Write(prompt);
+                string userInput = Console.ReadLine();
+                var (success, value) = parseFunc(userInput);
+                if (success && condtion(value))
+                    return value;
+                Console.Write("输入错误：");
             }
-            else
-            {
-                doubleResult = 0;
-                return false;
-            }
-        }
-        public static bool CheckScope(double input, double min, double max)
-        {
-            return input >= min && input <= max;
         }
     }
     internal class Program
     {
         static void Main()
         {
-            Func<string, double, double, double> inputHelper = DoubleInputHelper;
-            double chinese = inputHelper("请输入中文的成绩（1-100）：", 0, 100);
-            double math = inputHelper("请输入数学的成绩（1-100）：", 0, 100);
-            double english = inputHelper("请输入英语成绩（1-100）：", 0, 100);
+            double chinese = UserInputHelper.InputHelper("请输入语文的成绩（1-100）：", x => (double.TryParse(x, out var v), v), v => v >= 0 && v <= 100);
+            double math = UserInputHelper.InputHelper("请输入数学的成绩（1-100）：", x => (double.TryParse(x, out var v), v), v => v >= 0 && v <= 100);
+            double english = UserInputHelper.InputHelper("请输入英语的成绩（1-100）：", x => (double.TryParse(x, out var v), v), v => v >= 0 && v <= 100);
             double sumScore = chinese + math + english;
             double avgScore = (chinese + math + english) / 3;
             Console.WriteLine();
@@ -72,16 +66,6 @@ namespace Test20251018
             return score >= 90 ? "A" :
                 score >= 80 ? "B" :
                 score >= 70 ? "C" : "D";
-        }
-        static double DoubleInputHelper(string input, double min, double max)
-        {
-            while (true)
-            {
-                Console.Write(input);
-                if (UserInputHelper.CheckDoubleInput(Console.ReadLine(), out double result) && UserInputHelper.CheckScope(result, min, max))
-                    return result;
-                Console.Write("输入错误：");
-            }
         }
     }
 }
