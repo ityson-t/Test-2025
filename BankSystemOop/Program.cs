@@ -31,7 +31,7 @@
                 }
                 else
                 {
-                    Console.Write($"输入错误，");
+                    Console.Write($"输入错误。");
                     continue;
                 }
             }

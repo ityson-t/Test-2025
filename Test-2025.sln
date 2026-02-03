@@ -103,7 +103,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLambda", "AsyncLambda\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAwait", "WpfAwait\WpfAwait.csproj", "{137C5C88-1C38-4240-9D39-FF79816E5226}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "codexpro", "codexpro\codexpro.csproj", "{66FF44F3-7C7F-4594-9A96-F74EB19881BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prtest", "prtest\prtest.csproj", "{1B0AEDD7-AB15-4EEC-BC94-90BC36DB53ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -311,10 +311,10 @@ Global
 		{137C5C88-1C38-4240-9D39-FF79816E5226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{137C5C88-1C38-4240-9D39-FF79816E5226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{137C5C88-1C38-4240-9D39-FF79816E5226}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66FF44F3-7C7F-4594-9A96-F74EB19881BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66FF44F3-7C7F-4594-9A96-F74EB19881BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66FF44F3-7C7F-4594-9A96-F74EB19881BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66FF44F3-7C7F-4594-9A96-F74EB19881BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B0AEDD7-AB15-4EEC-BC94-90BC36DB53ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0AEDD7-AB15-4EEC-BC94-90BC36DB53ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0AEDD7-AB15-4EEC-BC94-90BC36DB53ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0AEDD7-AB15-4EEC-BC94-90BC36DB53ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
